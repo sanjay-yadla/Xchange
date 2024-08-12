@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{page}}</title>
+
+    <style>
+      body {
+        margin: 0;
+      }
+      /* body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6); 
+            z-index: -1;
+        } */
+      .items-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        padding: 20px;
+        /* align-items: center; */
+      }
+
+      .items-container .item {
+        /* background-color: #fc3746; */
+        /* background: rgb(2,0,36); */
+        background: linear-gradient(to bottom, #000000, #fc3746, #ff4955);
+        padding: 2.5vh 0;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        border-radius: 5px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        /* color: white; */
+        /* border: 1px solid black; */
+      }
+
+      .items-container .img-container {
+        height: 35vh;
+        width: 230px;
+      }
+
+      .items-container .img-container img {
+        height: 100%;
+        width: 100%;
+      }
+
+      .items-container .item-title {
+        font-size: 18px;
+        font-weight: 200;
+        margin: 1px 0px 0px 0px;
+        text-transform: capitalize;
+      }
+
+      .items-container .item .sell .item-title {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 20px;
+        text-transform: none;
+      }
+
+      .items-container .item .sell .item-data {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        /* font-size: 75px; */
+      }
+      .data {
+        /* font-family: "League Gothic", sans-serif; */
+        font-family: "Caveat", cursive;
+        font-optical-sizing: auto;
+      }
+
+      #landing {
+        background-image: url("/media/props/bg-01-b.jpg");
+        background-size: cover;
+        background-position: center;
+        position: relative;
+        width: 100%;
+        height: 100vh;
+      }
+
+      #landing::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        z-index: 0;
+      }
+      #cursor {
+        background-color: #fc3746;
+        height: 20px;
+        width: 20px;
+        border-radius: 100%;
+        position: fixed;
+        opacity: 0;
+        z-index: 10;
+      }
+
+      #content {
+        padding: 10vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+      #content h1 {
+        font-family: "League Gothic", sans-serif;
+        font-size: 75px;
+        z-index: 9;
+      }
+      #content p {
+        font-family: "Kaushan Script", handwriting;
+        color: #ff4955;
+        font-size: 23px;
+        z-index: 9;
+      }
+      #main {
+        height: 100%;
+        width: 100%;
+      }
+      .first {
+        color: #ff4955;
+      }
+      .second {
+        color: white;
+      }
+      .button-42 {
+        background-color: initial;
+        text-decoration: none;
+        background-image: linear-gradient(-180deg, #ff4955, #d32d40);
+        border-radius: 6px;
+        box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px;
+        color: #ffffff;
+        cursor: pointer;
+        display: inline-block;
+        font-family: "Inter", -apple-system, system-ui, Roboto, "Helvetica Neue",
+          Arial, sans-serif;
+        height: 40px;
+        line-height: 40px;
+        outline: 0;
+        overflow: hidden;
+        padding: 0 20px;
+        pointer-events: auto;
+        position: relative;
+        text-align: center;
+        touch-action: manipulation;
+        user-select: none;
+        -webkit-user-select: none;
+        vertical-align: top;
+        white-space: nowrap;
+        z-index: 9;
+        width: 100px;
+        border: 0;
+        transition: box-shadow 0.2s, background-color 0.3s;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+
+      .button-42:hover {
+        box-shadow: rgba(255, 72, 87, 0.5) 0 3px 8px;
+      }
+
+      .button-42:active {
+        background-color: #d32d40;
+        box-shadow: rgba(255, 72, 87, 0.7) 0 1px 4px;
+        opacity: 0.8;
+      }
+
+      .button-42:focus {
+        outline: 2px solid #ff4955;
+        outline-offset: 2px;
+      }
+      .itempic
+      {
+        border-radius: 5px;
+      }
+    </style>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=League+Gothic&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="main">
+      <div id="cursor"></div>
+      <div id="landing">
+        {% include 'navbar.html' %}
+        <div id="content">
+          <p>Discover a World of Possibilities with Every Click</p>
+          <h1 class="heading">
+            <span class="first">Unleashing a New</span
+            ><span class="second"> Era of Online Shopping</span>
+          </h1>
+          <a href="#items-container" class="button-42" role="button">Explore</a>
+        </div>
+      </div>
+
+      <div class="items-container" id="items-container">
+        {% for item in items %}
+        <div class="item">
+          <div class="img-container">
+            <img  class="itempic"src="/media/{{item.item_img}}" style="height: 225px" />
+          </div>
+          <div class="item-title">
+            <h2 class="data">{{ item.item_name }}</h2>
+          </div>
+          <div class="item-data">
+            <p class="data">
+              <b>Cost &ensp;&ensp;:&nbsp;</b> {{item.item_cost }}
+            </p>
+            <p class="data"><b>Seller &ensp;:&nbsp;</b> {{item.seller.name}}</p>
+            <p class="data">
+              <b>Mobile &nbsp;:&nbsp;</b> {{item.seller.phone}}
+            </p>
+          </div>
+        </div>
+        {% endfor %}
+        <div class="item">
+          <div class="sell">
+            <div class="item-title">
+              <h2 class="data">Want to</h2>
+              <h2 class="data">Add an Item ?</h2>
+            </div>
+            <div class="item-data">
+              <p class="data">Head to your Profile</p>
+              <p class="data">to start Selling</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
+    integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  ></script>
+  <script>
+    var t1 = gsap.timeline();
+    t1.from("#content h1, #content p, .button-42", {
+      duration: 2.5,
+      opacity: 0,
+      stagger: 0.8,
+    });
+    cursor = document.getElementById("cursor");
+    main = document.getElementById("landing");
+    main.addEventListener("mousemove", function (dets) {
+      gsap.to(cursor, {
+        opacity: 1,
+        duration: 0.5,
+        x: dets.x,
+        y: dets.y,
+      });
+    });
+    main.addEventListener("mouseleave", function () {
+      gsap.to(cursor, {
+        opacity: 0,
+        duration: 0.1,
+      });
+    });
+  </script>
+</html>

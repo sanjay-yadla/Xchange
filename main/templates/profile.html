@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        background-color: black;
+      }
+      #container {
+        display: flex;
+        padding-left: 2vw;
+        padding-top: 10vh;
+        gap: 5vw;
+      }
+      #left-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: aliceblue;
+        border-radius: 2%;
+        padding: 5%;
+        gap: 0vh;
+        height: 100%;
+        position: sticky;
+        top: 20vh;
+      }
+      .profilepic {
+        border-radius: 100%;
+        height: 120px;
+        width: 120px;
+      }
+
+      #profile-container {
+        border-radius: 100%;
+        position: relative;
+        top: -20vh;
+        height: 120px;
+        width: 120px;
+        border: 10px solid black;
+      }
+      #user-details {
+        position: relative;
+        top: -10vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      #user-details p,
+      #user-details b,
+      #userdetails p span {
+        font-family: "Caveat", cursive;
+        font-optical-sizing: auto;
+        font-size: 20px;
+      }
+
+      .sellButton:hover {
+        background-color: #c82333;
+      }
+      .sellButton {
+        margin-top: 8px;
+        padding: 5px 10px;
+        background-color: #ff4955;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        padding: 10px 20px;
+        font-size: 16px;
+      }
+
+      #right-container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+      }
+      .items-container {
+        display: flex;
+        flex-direction: row;
+        gap: 2vw;
+        justify-content: center;
+        width: 100%;
+        flex-wrap: wrap;
+      }
+      .item {
+        /* background: linear-gradient(180deg, #c82333, #d32d40, #ff4955, #ffffff); */
+        background-color: #c82333;
+        padding: 4%;
+        border-radius: 5px;
+        display: flex;
+        flex-direction: column;
+        /* justify-content: center; */
+        align-items: center;
+      }
+      .img-container img {
+        height: 225px;
+        width: 230px;
+        border-radius: 5px;
+      }
+      .removebtn {
+        margin-top: 8px;
+        /* padding: 5px 10px; */
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: black;
+      }
+      .removebtn:hover {
+        background-color: #0c0808;
+      }
+      .removebtnform {
+        display: flex;
+        justify-content: center;
+      }
+
+      .overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(1px);
+        z-index: 2;
+      }
+
+      .popup {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #ff4955;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        /* color: white; */
+      }
+
+      .popup .popup-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .popup .popup-content h2 {
+        font-size: 30px;
+      }
+
+      .popup .popup-content #sell-container {
+        padding: 30px 0;
+        gap: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .popup .popup-content #sell-container button {
+        margin-top: 8px;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: black;
+      }
+
+      .popup .popup-content input {
+        width: 80%;
+        background: white;
+        border: 2.2px grey solid;
+        outline: none;
+        padding: 1.8vh 2.6vh;
+        border-radius: 4px;
+        color: #000;
+        font-weight: 500;
+        font-size: 1.05em;
+      }
+
+      .close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+        /* background-color: white;
+        height: 20px;
+        width: 20px; */
+      }
+      .data {
+        font-family: "Caveat", cursive;
+        font-optical-sizing: auto;
+        font-size: 20px;
+      }
+      .item-title {
+        font-family: "Caveat", cursive;
+        font-optical-sizing: auto;
+        font-weight: 200;
+        text-transform: capitalize;
+      }
+      #addfirst {
+        align-items: center;
+        /* background-color: initial;
+    background-image: linear-gradient(#464d55, #25292e); */
+        background-color: #000;
+        border-radius: 8px;
+        border-width: 0;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1),
+          0 3px 6px rgba(0, 0, 0, 0.05);
+        box-sizing: border-box;
+        color: #fff;
+        cursor: pointer;
+        display: inline-flex;
+        flex-direction: column;
+        font-family: Forma;
+        font-size: 18px;
+        height: 52px;
+        justify-content: center;
+        line-height: 1;
+        margin-bottom: 2vh;
+        outline: none;
+        overflow: hidden;
+        padding: 0 32px;
+        text-align: center;
+        text-decoration: none;
+        transform: translate3d(0, 0, 0);
+        transition: all 150ms;
+        vertical-align: baseline;
+        white-space: nowrap;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+      }
+    </style>
+  </head>
+  <body>
+    {% include 'navbar.html' %}
+    <div id="container">
+      <div id="left-container">
+        <div id="profile-container">
+          <img
+            class="profilepic"
+            src="/media/{{profile.profile_img}}"
+            alt="Profile Image"
+            id="profile-img"
+          />
+        </div>
+        <div id="user-details">
+          <b>Name: </b>
+          <p><span>{{profile.name}}</span></p>
+          <p><b>(@_<span>{{user.username}}</span>)</b></p>
+          <b>Mobile: </b>
+          <p><span>{{profile.phone}}</span></p>
+        </div>
+        <button id="openFormBtn" class="sellButton">Sell</button>
+      </div>
+
+      <div id="right-container">
+        <h1 style="color: white">Items for Sale</h1>
+        <div class="items-container">
+          {% if items %} {% for item in items %}
+          <div class="item">
+            <div class="img-container">
+              <img src="/media/{{item.item_img}}" />
+            </div>
+            <div class="item-title">
+              <h2 class="item-title"><b>{{ item.item_name }}</b></h2>
+            </div>
+            <div class="item-data">
+              <p class="data">
+                <b>Cost &ensp;: &ensp;</b> ${{ item.item_cost }}
+              </p>
+              <form
+                class="removebtnform"
+                method="POST"
+                action="{% url 'deleteitem' item.id %}"
+              >
+                {% csrf_token %}
+                <button class="removebtn" type="submit">Remove</button>
+              </form>
+            </div>
+          </div>
+          {% endfor %} {% else %}
+          <div class="item">
+            <!-- <div class="no-items-content"> -->
+            <h2>No Items Available</h2>
+            <p>There are currently no items to display.</p>
+            <button id="addfirst">Add Your First Item</button>
+
+            <!-- </div> -->
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    <div id="overlay" class="overlay">
+      <div class="popup">
+        <span class="close" id="closeBtn">&times;</span>
+        <div class="popup-content">
+          <h2>List an Item</h2>
+          <form
+            method="post"
+            enctype="multipart/form-data"
+            action="{% url 'additem' %}"
+          >
+            {% csrf_token %}
+            <div id="sell-container">
+              <input type="text" name="item_name" placeholder="Enter name" />
+              <input type="number" name="item_cost" placeholder="Enter cost" />
+              <input type="file" name="item_img" />
+              <button type="submit">Add</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script>
+      document
+        .getElementById("openFormBtn")
+        .addEventListener("click", function () {
+          document.getElementById("overlay").style.display = "block";
+        });
+
+      document
+        .getElementById("closeBtn")
+        .addEventListener("click", function () {
+          document.getElementById("overlay").style.display = "none";
+        });
+    </script>
+    <script>
+      document
+        .getElementById("addfirst")
+        .addEventListener("click", function () {
+          document.getElementById("overlay").style.display = "block";
+        });
+    </script>
+  </body>
+</html>

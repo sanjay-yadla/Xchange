@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-left: 1%;
+        padding-right: 1%;
+        /* position: fixed; */
+        z-index: 9;
+        /* background-color: white; */
+      }
+      .X {
+        color: white;
+        font-size: 44px;
+      }
+      .change {
+        color: #fc3746;
+        font-size: 44px;
+        font-family: "Kalam", cursive;
+        font-weight: 300;
+        font-style: normal;
+      }
+      #right {
+        display: flex;
+        gap: 1.5vw;
+        z-index: 9;
+      }
+      #right a {
+        color: white;
+        position: relative;
+        text-decoration: none;
+        font-size: 20px;
+        font-family: "Manrope", sans-serif;
+        font-weight: 700;
+        transition: text-decoration ease-in-out;
+      }
+      #right a::before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 1px;
+        border-radius: 4px;
+        background-color: #fc3746;
+        bottom: -10px;
+        left: 0;
+        transform-origin: right;
+        transform: scaleX(0);
+        transition: transform 0.3s ease-in-out;
+      }
+      #right a:hover::before {
+        transform-origin: left;
+        transform: scaleX(1);
+      }
+      #right a:hover {
+        color: #fc3746;
+      }
+      .searchimg {
+        height: 30px;
+        width: 40px;
+        background-color: #fc3746;
+        border-radius: 0px 5px 5px 0px;
+        z-index: 10;
+      }
+      .searchbar {
+        position: relative;
+        left: 4.14vw;
+        width: 15vw;
+        border-radius: 5px;
+        border: none;
+      }
+    </style>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <nav>
+      <div id="left">
+        <h1><span class="X">X</span><span class="change">Change</span></h1>
+      </div>
+      <div id="right">
+        <!-- <span> -->
+        <input class="searchbar" type="text" />
+        <img class="searchimg" src="/media/props/search.png" />
+        <!-- </span> -->
+
+        <a href="/home">Home</a>
+        <a href="/profile">Profile</a>
+        <a href="/logout">Logout</a>
+      </div>
+    </nav>
+  </body>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
+    integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  ></script>
+  <script>
+    var t1 = gsap.timeline();
+    t1.from("#left h1", {
+      duration: 0.8,
+      y: -200,
+      opacity: 0,
+      scale: 0.01,
+    });
+    t1.from(".searchbar,.searchimg", {
+      opacity: 0,
+      y: -200,
+      scale: 0.01,
+      duration: 0.8,
+    });
+    t1.from("#right a", {
+      duration: 0.8,
+      y: -200,
+      opacity: 0,
+      scale: 0.01,
+      stagger: 0.2,
+    });
+  </script>
+</html>
